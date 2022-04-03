@@ -1,0 +1,10 @@
+version: '1'
+services:
+  influx_db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MODULE_NAME: influx_db
+      HOST_NAME: 127.0.0.1
+      HOST_PORT: 80
