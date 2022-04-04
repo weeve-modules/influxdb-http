@@ -1,4 +1,5 @@
-const { HOST_NAME, HOST_PORT, MODULE_NAME } = require('./config/config.js')
+const { EGRESS_URL, HOST_NAME, HOST_PORT, MODULE_NAME } = require('./config/config.js')
+const fetch = require('node-fetch')
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -55,11 +56,29 @@ app.post('/', async (req, res) => {
   if (result === false) {
     res.status(400).json({ status: false, message: "There's been an error querying DB, please check your query" })
   }
-  // parse data property, and update it
-  res.status(200).json({
-    status: true,
-    data: result,
-  })
+  if (EGRESS_URL!=='')
+  {
+    const callRes = await fetch(EGRESS_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        data: result,
+      })
+    });
+    if (!callRes.ok) {
+      res.status(500).json({ status: false, message: `Error passing response data to ${EGRESS_URL}` })
+    }
+    res.status(200).json({ status: true, message: 'Payload processed' })
+  } else
+  {
+    // parse data property, and update it
+    res.status(200).json({
+      status: true,
+      data: result,
+    });
+  }
 })
 
 //handle exceptions

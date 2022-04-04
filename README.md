@@ -33,6 +33,7 @@ HTTP module for accessing influxDB data
 
 * HOST_NAME
 * HOST_PORT
+* EGRESS_URL
 * INFLUXDB_URL
 * INFLUXDB_API_KEY
 * INFLUXDB_ORG
@@ -47,6 +48,7 @@ HTTP module for accessing influxDB data
 | MODULE_NAME           | string | Name of the module                     |
 | HOST_NAME           | string | Host where app is running              |
 | HOST_PORT           | string | Port where app is running              |
+| EGRESS_URL           | string | URL for passing the result output to next module|
 | INFLUXDB_URL           | string | URL of InfluxDB endpoint|
 | INFLUXDB_API_KEY           | string | API key for accessing influxDB|
 | INFLUXDB_ORG           | string | Organization name|
