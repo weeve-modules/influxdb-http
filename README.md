@@ -52,8 +52,40 @@ HTTP module for accessing influxDB data
 | INFLUXDB_ORG           | string | Organization name|
 | INFLUXDB_BUCKET           | string | Bucket name|
 
+* "query" parameter that is passed in HTTP POST request can be any query for influxDB, example would be:
+```js
+{
+	"query":"|> range(start: -1000h) |> filter(fn: (r) => r._measurement == \"http_listener_v2\") |> filter(fn: (r) => r._field == \"targetTemperature\")"
+}
+```
 
+* Ouput looks like this
+```js
+{
+	"status": true,
+	"data": {
+		"result": "_result",
+		"table": 0,
+		"_start": "2022-02-20T22:14:33.579385883Z",
+		"_stop": "2022-04-03T14:14:33.579385883Z",
+		"_time": "2022-03-22T10:31:29.527Z",
+		"_value": 12,
+		"_field": "targetTemperature",
+		"_measurement": "http_listener_v2",
+		"devEUI": "70b3d52dd3003e30",
+		"deviceName": "70B3D52DD3003E30",
+		"host": "wohnio"
+	}
+}
+```
 
+* in the case query is wrong or no data for query, "data" property is null, in the case of error status will be "false" with proper "message".
+```js
+{
+	"status": false,
+	"message": "Query not provided."
+}
+```
 ## Dependencies
 
 ```js
