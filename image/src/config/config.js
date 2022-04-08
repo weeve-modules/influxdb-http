@@ -8,7 +8,7 @@ module.exports = {
   INFLUXDB_URL: env('INFLUXDB_URL', 'https://influxdb.wohnio.weeve.engineering'),
   INFLUXDB_API_KEY: env(
     'INFLUXDB_API_KEY',
-    'YmCVpZKTI04OHUxIZ5koCIKLrFtUcbWoOZwikamLqEsbnkjcYlt1XdEohB9Q4Da943SNY9AgesYnlpqb8WFmeg=='
+    'test'
   ),
   INFLUXDB_ORG: env('INFLUXDB_ORG', 'weeve'),
   INFLUXDB_BUCKET: env('INFLUXDB_BUCKET', 'testmp'),
