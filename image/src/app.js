@@ -46,15 +46,15 @@ app.get('/health', async (req, res) => {
 app.post('/', async (req, res) => {
   let json = req.body
   if (!json) {
-    res.status(400).json({ status: false, message: 'Payload structure is not valid.' })
+    return res.status(400).json({ status: false, message: 'Payload structure is not valid.' })
   }
   if (!json.query) {
-    res.status(400).json({ status: false, message: 'Query not provided.' })
+    return res.status(400).json({ status: false, message: 'Query not provided.' })
   }
   let result = false
   result = await queryDB(json.query)
   if (result === false) {
-    res.status(400).json({ status: false, message: "There's been an error querying DB, please check your query" })
+    return res.status(400).json({ status: false, message: "There's been an error querying DB, please check your query" })
   }
   if (EGRESS_URL!=='')
   {
@@ -68,13 +68,13 @@ app.post('/', async (req, res) => {
       })
     });
     if (!callRes.ok) {
-      res.status(500).json({ status: false, message: `Error passing response data to ${EGRESS_URL}` })
+      return res.status(500).json({ status: false, message: `Error passing response data to ${EGRESS_URL}` })
     }
-    res.status(200).json({ status: true, message: 'Payload processed' })
+    return res.status(200).json({ status: true, message: 'Payload processed' })
   } else
   {
     // parse data property, and update it
-    res.status(200).json({
+    return res.status(200).json({
       status: true,
       data: result,
     });
