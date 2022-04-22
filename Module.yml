@@ -25,13 +25,7 @@ environments:
     value: ''
     default: 80
     type: integer
-    name: Port
-  - key: EGRESS_URL
-    description: URL to pass the result payload to
-    value: ''
-    default:
-    type: string
-    name: Egress URL    
+    name: Port 
   - key: INFLUXDB_URL
     description: URL for InfluxDB endpoint
     value: ''
