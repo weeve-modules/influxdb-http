@@ -1,13 +1,11 @@
 # InfluxDB Module
 
-|                |                                 |
-| -------------- | ------------------------------- |
-| Name           | InfluxDB Module               |
-| Version        | v1.0.0                          |
+|                |                                |
+| -------------- | ------------------------------ |
+| Name           | InfluxDB Module                |
+| Version        | v1.0.0                         |
 | Dockerhub Link | [weevenetwork/influxdb-http]() |
-| Authors        | Mesud Pasic                     |
-
-
+| Authors        | Mesud Pasic                    |
 
 - [MQTT Ingress](#mcclimate-decoder)
   - [Description](#description)
@@ -17,51 +15,48 @@
     - [Set by the weeve Agent on the edge-node](#set-by-the-weeve-agent-on-the-edge-node)
   - [Dependencies](#dependencies)
 
-
-
-
 ## Description
 
 HTTP module for accessing influxDB data
 
 ## Features
 
-* Read data from specific bucket passing custom queries
-* Sends data to next module service via REST API
+- Read data from specific bucket passing custom queries
+- Sends data to next module service via REST API
 
 ## Environment Variables
 
-* HOST_NAME
-* HOST_PORT
-* EGRESS_URL
-* INFLUXDB_URL
-* INFLUXDB_API_KEY
-* INFLUXDB_ORG
-* INFLUXDB_BUCKET
+- INGRESS_HOST
+- INGRESS_PORT
+- INFLUXDB_URL
+- INFLUXDB_API_KEY
+- INFLUXDB_ORG
+- INFLUXDB_BUCKET
 
 ### Module Specific
 
 ### Set by the weeve Agent on the edge-node
 
-| Environment Variables | type   | Description                            |
-| --------------------- | ------ | -------------------------------------- |
-| MODULE_NAME           | string | Name of the module                     |
-| HOST_NAME           | string | Host where app is running              |
-| HOST_PORT           | string | Port where app is running              |
-| EGRESS_URL           | string | URL for passing the result output to next module|
-| INFLUXDB_URL           | string | URL of InfluxDB endpoint|
-| INFLUXDB_API_KEY           | string | API key for accessing influxDB|
-| INFLUXDB_ORG           | string | Organization name|
-| INFLUXDB_BUCKET           | string | Bucket name|
+| Environment Variables | type   | Description                    |
+| --------------------- | ------ | ------------------------------ |
+| MODULE_NAME           | string | Name of the module             |
+| INGRESS_HOST          | string | Host where app is running      |
+| INGRESS_PORT          | string | Port where app is running      |
+| INFLUXDB_URL          | string | URL of InfluxDB endpoint       |
+| INFLUXDB_API_KEY      | string | API key for accessing influxDB |
+| INFLUXDB_ORG          | string | Organization name              |
+| INFLUXDB_BUCKET       | string | Bucket name                    |
 
-* "query" parameter that is passed in HTTP POST request can be any query for influxDB, example would be:
+- "query" parameter that is passed in HTTP POST request can be any query for influxDB, example would be:
+
 ```js
 {
 	"query":"|> range(start: -1000h) |> filter(fn: (r) => r._measurement == \"http_listener_v2\") |> filter(fn: (r) => r._field == \"targetTemperature\")"
 }
 ```
 
-* Ouput looks like this
+- Ouput looks like this
+
 ```js
 {
 	"status": true,
@@ -81,13 +76,15 @@ HTTP module for accessing influxDB data
 }
 ```
 
-* in the case query is wrong or no data for query, "data" property is null, in the case of error status will be "false" with proper "message".
+- in the case query is wrong or no data for query, "data" property is null, in the case of error status will be "false" with proper "message".
+
 ```js
 {
 	"status": false,
 	"message": "Query not provided."
 }
 ```
+
 ## Dependencies
 
 ```js

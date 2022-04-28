@@ -1,4 +1,4 @@
-const { EGRESS_URL, HOST_NAME, HOST_PORT, MODULE_NAME } = require('./config/config.js')
+const { EGRESS_URL, INGRESS_HOST, INGRESS_PORT, MODULE_NAME } = require('./config/config.js')
 const fetch = require('node-fetch')
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -48,16 +48,17 @@ app.post('/', async (req, res) => {
   if (!json) {
     return res.status(400).json({ status: false, message: 'Payload structure is not valid.' })
   }
-  if (!json.query) {
+  if (typeof json.query === 'undefined') {
     return res.status(400).json({ status: false, message: 'Query not provided.' })
   }
   let result = false
   result = await queryDB(json.query)
   if (result === false) {
-    return res.status(400).json({ status: false, message: "There's been an error querying DB, please check your query" })
+    return res
+      .status(400)
+      .json({ status: false, message: "There's been an error querying DB, please check your query" })
   }
-  if (EGRESS_URL!=='')
-  {
+  if (EGRESS_URL !== '') {
     const callRes = await fetch(EGRESS_URL, {
       method: 'POST',
       headers: {
@@ -65,19 +66,18 @@ app.post('/', async (req, res) => {
       },
       body: JSON.stringify({
         data: result,
-      })
-    });
+      }),
+    })
     if (!callRes.ok) {
       return res.status(500).json({ status: false, message: `Error passing response data to ${EGRESS_URL}` })
     }
     return res.status(200).json({ status: true, message: 'Payload processed' })
-  } else
-  {
+  } else {
     // parse data property, and update it
     return res.status(200).json({
       status: true,
       data: result,
-    });
+    })
   }
 })
 
@@ -94,7 +94,7 @@ app.use(async (err, req, res, next) => {
 })
 
 if (require.main === module) {
-  app.listen(HOST_PORT, HOST_NAME, () => {
-    console.log(`${MODULE_NAME} listening on ${HOST_PORT}`)
+  app.listen(INGRESS_PORT, INGRESS_HOST, () => {
+    console.log(`${MODULE_NAME} listening on ${INGRESS_PORT}`)
   })
 }
