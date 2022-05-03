@@ -2,12 +2,12 @@
 
 |                |                                |
 | -------------- | ------------------------------ |
-| Name           | InfluxDB Module                |
+| Name           | InfluxDB HTTP                |
 | Version        | v1.0.0                         |
 | Dockerhub Link | [weevenetwork/influxdb-http]() |
 | Authors        | Mesud Pasic                    |
 
-- [MQTT Ingress](#mcclimate-decoder)
+- [InfluxDB HTTP](#influxdb-http)
   - [Description](#description)
   - [Features](#features)
   - [Environment Variables](#environment-variables)
@@ -17,7 +17,7 @@
 
 ## Description
 
-HTTP module for accessing influxDB data
+HTTP module for querying influxDB data. Query is passed in body of a POST request and for specified bucket it will query the data and return results for further usage/processing. 
 
 ## Features
 
@@ -26,12 +26,12 @@ HTTP module for accessing influxDB data
 
 ## Environment Variables
 
-- INGRESS_HOST
-- INGRESS_PORT
-- INFLUXDB_URL
-- INFLUXDB_API_KEY
-- INFLUXDB_ORG
-- INFLUXDB_BUCKET
+| Environment Variables | type | Description |
+| --- | --- | --- |
+| INFLUXDB_URL          | string | URL of InfluxDB endpoint       |
+| INFLUXDB_API_KEY      | string | API key for accessing influxDB |
+| INFLUXDB_ORG          | string | Organization name              |
+| INFLUXDB_BUCKET       | string | Bucket name                    |
 
 ### Module Specific
 
@@ -42,10 +42,6 @@ HTTP module for accessing influxDB data
 | MODULE_NAME           | string | Name of the module             |
 | INGRESS_HOST          | string | Host where app is running      |
 | INGRESS_PORT          | string | Port where app is running      |
-| INFLUXDB_URL          | string | URL of InfluxDB endpoint       |
-| INFLUXDB_API_KEY      | string | API key for accessing influxDB |
-| INFLUXDB_ORG          | string | Organization name              |
-| INFLUXDB_BUCKET       | string | Bucket name                    |
 
 - "query" parameter that is passed in HTTP POST request can be any query for influxDB, example would be:
 
