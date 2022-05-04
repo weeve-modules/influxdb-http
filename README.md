@@ -4,7 +4,7 @@
 | -------------- | ------------------------------ |
 | Name           | InfluxDB HTTP                |
 | Version        | v1.0.0                         |
-| Dockerhub Link | [weevenetwork/influxdb-http]() |
+| Dockerhub Link | [weevenetwork/influxdb-http](https://hub.docker.com/r/weevenetwork/influxdb-http) |
 | Authors        | Mesud Pasic                    |
 
 - [InfluxDB HTTP](#influxdb-http)
