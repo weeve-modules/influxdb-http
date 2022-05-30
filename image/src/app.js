@@ -84,7 +84,7 @@ app.post('/', async (req, res) => {
   } else {
     // parse data property, and update it
     return res.status(200).json({
-      status: true,
+      status: result!==null ? true : false,
       data: result,
     })
   }
