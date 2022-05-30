@@ -1,4 +1,4 @@
-const { EGRESS_URL, INGRESS_HOST, INGRESS_PORT, MODULE_NAME } = require('./config/config.js')
+const { EGRESS_URL, INGRESS_HOST, INGRESS_PORT, MODULE_NAME, RUN_AS_STANDALONE } = require('./config/config.js')
 const fetch = require('node-fetch')
 const express = require('express')
 const app = express()
@@ -67,7 +67,7 @@ app.post('/', async (req, res) => {
       .status(400)
       .json({ status: false, message: "There's been an error querying DB, please check your query" })
   }
-  if (EGRESS_URL !== '') {
+  if (EGRESS_URL !== '' && RUN_AS_STANDALONE=='no') {
     const callRes = await fetch(EGRESS_URL, {
       method: 'POST',
       headers: {

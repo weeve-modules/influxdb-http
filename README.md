@@ -32,6 +32,8 @@ HTTP module for querying influxDB data. Query is passed in body of a POST reques
 | INFLUXDB_API_KEY      | string | API key for accessing influxDB |
 | INFLUXDB_ORG          | string | Organization name              |
 | INFLUXDB_BUCKET       | string | Bucket name                    |
+| RUN_AS_STANDALONE       | string | Run as standalone rest API service                    |
+
 
 ### Module Specific
 
