@@ -38,6 +38,14 @@ environments:
     default: no
     type: string
     name: Bucket name
+  - key: RUN_AS_STANDALONE
+    description: Run as standalone rest API service
+    value: ''
+    default: no
+    type: enum
+    options:
+      - yes
+      - no
 commands: []
 document:
   ports: []
