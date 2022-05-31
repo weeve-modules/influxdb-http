@@ -12,4 +12,5 @@ services:
       INFLUXDB_API_KEY: ''
       INFLUXDB_ORG: 'wohnio'
       INFLUXDB_BUCKET: 'wohnio'
+      RUN_AS_STANDALONE: 'yes'
 
