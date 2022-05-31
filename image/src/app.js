@@ -67,7 +67,13 @@ app.post('/', async (req, res) => {
       .status(400)
       .json({ status: false, message: "There's been an error querying DB, please check your query" })
   }
-  if (EGRESS_URL !== '' && RUN_AS_STANDALONE=='no') {
+  if (RUN_AS_STANDALONE == 'yes' || EGRESS_URL == '') {
+    // parse data property, and update it
+    return res.status(200).json({
+      status: result !== null ? true : false,
+      data: result,
+    })
+  } else {
     const callRes = await fetch(EGRESS_URL, {
       method: 'POST',
       headers: {
@@ -81,12 +87,6 @@ app.post('/', async (req, res) => {
       return res.status(500).json({ status: false, message: `Error passing response data to ${EGRESS_URL}` })
     }
     return res.status(200).json({ status: true, message: 'Payload processed' })
-  } else {
-    // parse data property, and update it
-    return res.status(200).json({
-      status: result!==null ? true : false,
-      data: result,
-    })
   }
 })
 
