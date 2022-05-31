@@ -1,11 +1,11 @@
 # InfluxDB HTTP
 
-|                |                                |
-| -------------- | ------------------------------ |
-| Name           | InfluxDB HTTP                |
-| Version        | v1.0.0                         |
+|                |                                                                                   |
+| -------------- | --------------------------------------------------------------------------------- |
+| Name           | InfluxDB HTTP                                                                     |
+| Version        | v1.0.0                                                                            |
 | Dockerhub Link | [weevenetwork/influxdb-http](https://hub.docker.com/r/weevenetwork/influxdb-http) |
-| Authors        | Mesud Pasic                    |
+| Authors        | Mesud Pasic                                                                       |
 
 - [InfluxDB HTTP](#influxdb-http)
   - [Description](#description)
@@ -17,7 +17,7 @@
 
 ## Description
 
-HTTP module for querying influxDB data. Query is passed in body of a POST request and for specified bucket it will query the data and return results for further usage/processing. 
+HTTP module for querying influxDB data. Query is passed in body of a POST request and for specified bucket it will query the data and return results for further usage/processing.
 
 ## Features
 
@@ -26,24 +26,23 @@ HTTP module for querying influxDB data. Query is passed in body of a POST reques
 
 ## Environment Variables
 
-| Environment Variables | type | Description |
-| --- | --- | --- |
-| INFLUXDB_URL          | string | URL of InfluxDB endpoint       |
-| INFLUXDB_API_KEY      | string | API key for accessing influxDB |
-| INFLUXDB_ORG          | string | Organization name              |
-| INFLUXDB_BUCKET       | string | Bucket name                    |
-| RUN_AS_STANDALONE       | string | Run as standalone rest API service                    |
-
+| Environment Variables | type   | Description                        |
+| --------------------- | ------ | ---------------------------------- |
+| INFLUXDB_URL          | string | URL of InfluxDB endpoint           |
+| INFLUXDB_API_KEY      | string | API key for accessing influxDB     |
+| INFLUXDB_ORG          | string | Organization name                  |
+| INFLUXDB_BUCKET       | string | Bucket name                        |
+| RUN_AS_STANDALONE     | string | Run as standalone rest API service |
 
 ### Module Specific
 
 ### Set by the weeve Agent on the edge-node
 
-| Environment Variables | type   | Description                    |
-| --------------------- | ------ | ------------------------------ |
-| MODULE_NAME           | string | Name of the module             |
-| INGRESS_HOST          | string | Host where app is running      |
-| INGRESS_PORT          | string | Port where app is running      |
+| Environment Variables | type   | Description               |
+| --------------------- | ------ | ------------------------- |
+| MODULE_NAME           | string | Name of the module        |
+| INGRESS_HOST          | string | Host where app is running |
+| INGRESS_PORT          | string | Port where app is running |
 
 - "query" parameter that is passed in HTTP POST request can be any query for influxDB, example would be:
 

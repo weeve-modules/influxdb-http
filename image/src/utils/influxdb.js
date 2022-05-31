@@ -21,7 +21,7 @@ const queryDB = async q => {
         console.error(error)
         reject(false)
       },
-      complete() {        
+      complete() {
         resolve(output)
       },
     })
