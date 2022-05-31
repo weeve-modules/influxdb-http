@@ -67,7 +67,8 @@ app.post('/', async (req, res) => {
       .status(400)
       .json({ status: false, message: "There's been an error querying DB, please check your query" })
   }
-  if (RUN_AS_STANDALONE == 'yes' || EGRESS_URL == '') {
+  console.log(RUN_AS_STANDALONE)
+  if (RUN_AS_STANDALONE !== 'no' || EGRESS_URL == '') {
     // parse data property, and update it
     return res.status(200).json({
       status: result !== null ? true : false,
