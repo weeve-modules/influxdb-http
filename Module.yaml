@@ -1,5 +1,5 @@
 version: 1.0.0
-name: InfluxDB HTTP
+name: InfluxDB Query
 description: The module sends query to InfluxDB and reads data
 icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_influxdb-telegraf_output.png
 type: process
@@ -11,7 +11,7 @@ categories:
   - id: category
     name: Encoder
 image:
-  name: weevenetwork/influxdb-http
+  name: weevenetwork/influxdb-query
   tag: latest
 environments:
   - key: INFLUXDB_URL
