@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      MODULE_NAME: influx_db
+      MODULE_NAME: flux-query
       INGRESS_HOST: 127.0.0.1
       INGRESS_PORT: 80
       INFLUXDB_URL: 'https://influxdb.wohnio.weeve.engineering'

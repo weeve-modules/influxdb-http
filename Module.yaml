@@ -1,7 +1,7 @@
 version: 1.0.0
 name: InfluxDB HTTP
 description: The module sends query to InfluxDB and reads data
-icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_influxdb-telegraf_output.png
+icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_InfluxDB-http_process.png
 type: process
 tags:
   - McClimate
@@ -11,7 +11,7 @@ categories:
   - id: category
     name: Encoder
 image:
-  name: weevenetwork/influxdb-http
+  name: weevenetwork/flux-query
   tag: latest
 environments:
   - key: INFLUXDB_URL

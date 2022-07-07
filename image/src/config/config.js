@@ -3,7 +3,7 @@ const env = require('../utils/env')
 module.exports = {
   INGRESS_HOST: env('INGRESS_HOST', '127.0.0.1'),
   INGRESS_PORT: env('INGRESS_PORT', '8081'),
-  MODULE_NAME: env('MODULE_NAME', 'influxdb-http'),
+  MODULE_NAME: env('MODULE_NAME', 'flux-query'),
   EGRESS_URL: env('EGRESS_URL', ''),
   INFLUXDB_URL: env('INFLUXDB_URL', ''),
   INFLUXDB_API_KEY: env(
