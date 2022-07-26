@@ -7,7 +7,7 @@ const expressWinston = require('express-winston')
 const { queryDB } = require('./utils/influxdb')
 const { formatTimeDiff } = require('./utils/util')
 
-//initialization
+// initialization
 app.use(express.urlencoded({ extended: true }))
 app.use(
   express.json({
@@ -21,7 +21,7 @@ app.use(
   })
 )
 
-//logger
+// logger
 app.use(
   expressWinston.logger({
     transports: [
@@ -43,7 +43,7 @@ app.use(
   })
 )
 const startTime = Date.now()
-//health check
+// health check
 app.get('/health', async (req, res) => {
   res.json({
     serverStatus: 'Running',
@@ -51,9 +51,9 @@ app.get('/health', async (req, res) => {
     module: MODULE_NAME,
   })
 })
-//main post listener
+// main post listener
 app.post('/', async (req, res) => {
-  let json = req.body
+  const json = req.body
   if (!json) {
     return res.status(400).json({ status: false, message: 'Payload structure is not valid.' })
   }
@@ -62,15 +62,15 @@ app.post('/', async (req, res) => {
   }
   let result = false
   result = await queryDB(json.query)
-  if (result === false) {
+  if (result instanceof Error) {
     return res
       .status(400)
       .json({ status: false, message: "There's been an error querying DB, please check your query" })
   }
-  if (RUN_AS_STANDALONE !== 'no' || EGRESS_URLS == '') {
+  if (RUN_AS_STANDALONE !== 'no' || !EGRESS_URLS) {
     // parse data property, and update it
     return res.status(200).json({
-      status: result !== null ? true : false,
+      status: result !== null,
       data: result,
     })
   } else {
@@ -90,12 +90,12 @@ app.post('/', async (req, res) => {
   }
 })
 
-//handle exceptions
+// handle exceptions
 app.use(async (err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }
-  let errCode = err.status || 401
+  const errCode = err.status || 401
   res.status(errCode).send({
     status: false,
     message: err.message,

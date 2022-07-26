@@ -15,11 +15,11 @@ const queryDB = async q => {
     queryApi.queryRows(query, {
       next(row, tableMeta) {
         output = tableMeta.toObject(row)
-        //console.log(`${output._time} ${output._measurement}: ${output._field}=${output._value}`)
+        // console.log(`${output._time} ${output._measurement}: ${output._field}=${output._value}`)
       },
       error(error) {
         console.error(error)
-        reject(false)
+        reject(error)
       },
       complete() {
         resolve(output)

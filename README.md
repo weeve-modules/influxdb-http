@@ -1,11 +1,11 @@
 # InfluxDB Query
 
-|                |                                                                                   |
-| -------------- | --------------------------------------------------------------------------------- |
-| Name           | InfluxDB Query                                                                     |
-| Version        | v1.0.0                                                                            |
+|                |                                                                                     |
+| -------------- | ----------------------------------------------------------------------------------- |
+| Name           | InfluxDB Query                                                                      |
+| Version        | v1.0.0                                                                              |
 | Dockerhub Link | [weevenetwork/influxdb-query](https://hub.docker.com/r/weevenetwork/influxdb-query) |
-| Authors        | Mesud Pasic                                                                       |
+| Authors        | Mesud Pasic                                                                         |
 
 - [InfluxDB Query](#influxdb-query)
   - [Description](#description)
