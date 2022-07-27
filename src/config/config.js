@@ -2,13 +2,13 @@ const env = require('../utils/env')
 
 module.exports = {
   INGRESS_HOST: env('INGRESS_HOST', '127.0.0.1'),
-  INGRESS_PORT: env('INGRESS_PORT', '8081'),
-  MODULE_NAME: env('MODULE_NAME', 'influxdb-http'),
-  EGRESS_URL: env('EGRESS_URL', ''),
-  INFLUXDB_URL: env('INFLUXDB_URL', ''),
+  INGRESS_PORT: env('INGRESS_PORT', '8080'),
+  MODULE_NAME: env('MODULE_NAME', 'InfluxDB Query'),
+  EGRESS_URLS: env('EGRESS_URLS', ''),
+  INFLUXDB_URL: env('INFLUXDB_URL', 'https://influxdb.wohnio.weeve.engineering'),
   INFLUXDB_API_KEY: env(
     'INFLUXDB_API_KEY',
-    ''
+    'YmCVpZKTI04OHUxIZ5koCIKLrFtUcbWoOZwikamLqEsbnkjcYlt1XdEohB9Q4Da943SNY9AgesYnlpqb8WFmeg=='
   ),
   INFLUXDB_ORG: env('INFLUXDB_ORG', 'weeve'),
   INFLUXDB_BUCKET: env('INFLUXDB_BUCKET', 'testmp'),

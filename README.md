@@ -1,13 +1,13 @@
-# InfluxDB HTTP
+# InfluxDB Query
 
-|                |                                                                                   |
-| -------------- | --------------------------------------------------------------------------------- |
-| Name           | InfluxDB HTTP                                                                     |
-| Version        | v1.0.0                                                                            |
-| Dockerhub Link | [weevenetwork/influxdb-http](https://hub.docker.com/r/weevenetwork/influxdb-http) |
-| Authors        | Mesud Pasic                                                                       |
+|                |                                                                                     |
+| -------------- | ----------------------------------------------------------------------------------- |
+| Name           | InfluxDB Query                                                                      |
+| Version        | v1.0.0                                                                              |
+| Dockerhub Link | [weevenetwork/influxdb-query](https://hub.docker.com/r/weevenetwork/influxdb-query) |
+| Authors        | Mesud Pasic                                                                         |
 
-- [InfluxDB HTTP](#influxdb-http)
+- [InfluxDB Query](#influxdb-query)
   - [Description](#description)
   - [Features](#features)
   - [Environment Variables](#environment-variables)
@@ -17,7 +17,7 @@
 
 ## Description
 
-HTTP module for querying influxDB data. Query is passed in body of a POST request and for specified bucket it will query the data and return results for further usage/processing.
+Module for querying InfluxDB data. Query is passed in body of a POST request and for specified bucket it will query the data and return results for further usage/processing.
 
 ## Features
 
