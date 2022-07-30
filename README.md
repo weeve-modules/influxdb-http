@@ -4,7 +4,7 @@
 | -------------- | ----------------------------------------------------------------------------------- |
 | Name           | InfluxDB Query                                                                      |
 | Version        | v1.0.0                                                                              |
-| Dockerhub Link | [weevenetwork/influxdb-query](https://hub.docker.com/r/weevenetwork/influxdb-query) |
+| DockerHub | [weevenetwork/influxdb-query](https://hub.docker.com/r/weevenetwork/influxdb-query) |
 | Authors        | Mesud Pasic                                                                         |
 
 - [InfluxDB Query](#influxdb-query)
@@ -41,8 +41,10 @@ Module for querying InfluxDB data. Query is passed in body of a POST request and
 | Environment Variables | type   | Description               |
 | --------------------- | ------ | ------------------------- |
 | MODULE_NAME           | string | Name of the module        |
+| MODULE_TYPE           | string | Type of the module (Input, Processing, Output)    |
 | INGRESS_HOST          | string | Host where app is running |
 | INGRESS_PORT          | string | Port where app is running |
+| EGRESS_URLS           | string | HTTP ReST endpoint for the next module            |
 
 - "query" parameter that is passed in HTTP POST request can be any query for influxDB, example would be:
 

@@ -15,31 +15,40 @@ envs:                                   # Array of environment variables that wi
   - name: InfluxDB URL
     key: INFLUXDB_URL
     description: URL for InfluxDB endpoint
-    value: ''    
+    value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: InfluxDB API Key
     key: INFLUXDB_API_KEY
     description: API key for influx DB
-    value: ''    
+    value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Organization name
     key: INFLUXDB_ORG
     description: Organization name
-    value: ''    
+    value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Bucket name
     key: INFLUXDB_BUCKET
     description: Bucket name for data access
-    value: ''    
+    value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Run as Standalone
     key: RUN_AS_STANDALONE
     description: Run as standalone rest API service
-    value: ''    
+    value: ''
     type: 'select'
     options:
       - yes
       - no
+    dependencies: []
 ports:                                  # Array of ports that will be exposed by the module.
   - container: 8080                     # Port number from the container.
     host: 8080                          # Port number to map on the host.
