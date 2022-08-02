@@ -1,10 +1,9 @@
 const { EGRESS_URLS, INGRESS_HOST, INGRESS_PORT, MODULE_NAME, RUN_AS_STANDALONE } = require('./config/config.js')
-const fetch = require('node-fetch')
 const express = require('express')
 const app = express()
 const winston = require('winston')
 const expressWinston = require('express-winston')
-const { queryDB } = require('./utils/influxdb')
+const { queryDB, send } = require('./utils/influxdb')
 
 // initialization
 app.use(express.urlencoded({ extended: true }))
@@ -64,29 +63,7 @@ app.post('/', async (req, res) => {
       data: result,
     })
   } else {
-    const urls = []
-    const eUrls = EGRESS_URLS.replace(/ /g, '')
-    if (eUrls.indexOf(',') !== -1) {
-      urls.push(...eUrls.split(','))
-    } else {
-      urls.push(eUrls)
-    }
-    urls.forEach(async url => {
-      if (url) {
-        const callRes = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            data: result,
-          }),
-        })
-        if (!callRes.ok) {
-          console.error(`Error passing response data to ${url}`)
-        }
-      }
-    })
+    await send(result)
     return res.status(200).json({ status: true, message: 'Payload processed' })
   }
 })
