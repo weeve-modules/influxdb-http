@@ -42,9 +42,7 @@ const send = async result => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-              data: result,
-            }),
+            body: JSON.stringify(result),
           })
           if (!callRes.ok) {
             console.error(`Error passing response data to ${url}, status: ${callRes.status}`)

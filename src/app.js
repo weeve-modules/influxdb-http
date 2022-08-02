@@ -63,7 +63,9 @@ app.post('/', async (req, res) => {
       data: result,
     })
   } else {
-    await send(result)
+    await send({
+      data: result,
+    })
     return res.status(200).json({ status: true, message: 'Payload processed' })
   }
 })
