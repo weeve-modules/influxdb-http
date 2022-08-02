@@ -5,10 +5,10 @@ module.exports = {
   INGRESS_PORT: env('INGRESS_PORT', '8080'),
   MODULE_NAME: env('MODULE_NAME', 'InfluxDB Query'),
   EGRESS_URLS: env('EGRESS_URLS', ''),
-  INFLUXDB_URL: env('INFLUXDB_URL', 'https://influxdb.wohnio.weeve.engineering'),
+  INFLUXDB_URL: env('INFLUXDB_URL', ''),
   INFLUXDB_API_KEY: env(
     'INFLUXDB_API_KEY',
-    'YmCVpZKTI04OHUxIZ5koCIKLrFtUcbWoOZwikamLqEsbnkjcYlt1XdEohB9Q4Da943SNY9AgesYnlpqb8WFmeg=='
+    ''
   ),
   INFLUXDB_ORG: env('INFLUXDB_ORG', 'weeve'),
   INFLUXDB_BUCKET: env('INFLUXDB_BUCKET', 'testmp'),
