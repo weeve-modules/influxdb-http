@@ -31,9 +31,8 @@ const queryDB = async q => {
 
 const send = async result => {
   if (EGRESS_URLS) {
-    const urls = []
     const eUrls = EGRESS_URLS.replace(/ /g, '')
-    urls.push(...eUrls.split(','))
+    const urls = eUrls.split(',')
     urls.forEach(async url => {
       if (url) {
         try {
