@@ -3,8 +3,9 @@ Decoder documentation:
 https://influxdb.wohnio.weeve.engineering/orgs/5bdfe361455ba0f6/load-data/client-libraries/javascript-node
 
 */
+const fetch = require('node-fetch')
 const { InfluxDB } = require('@influxdata/influxdb-client')
-const { INFLUXDB_URL, INFLUXDB_API_KEY, INFLUXDB_ORG, INFLUXDB_BUCKET } = require('../config/config')
+const { EGRESS_URLS, INFLUXDB_URL, INFLUXDB_API_KEY, INFLUXDB_ORG, INFLUXDB_BUCKET } = require('../config/config')
 const client = new InfluxDB({ url: INFLUXDB_URL, token: INFLUXDB_API_KEY })
 const queryApi = client.getQueryApi(INFLUXDB_ORG)
 
@@ -28,6 +29,34 @@ const queryDB = async q => {
   })
 }
 
+const send = async result => {
+  if (EGRESS_URLS) {
+    const eUrls = EGRESS_URLS.replace(/ /g, '')
+    const urls = eUrls.split(',')
+    urls.forEach(async url => {
+      if (url) {
+        try {
+          const callRes = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(result),
+          })
+          if (!callRes.ok) {
+            console.error(`Error passing response data to ${url}, status: ${callRes.status}`)
+          }
+        } catch (e) {
+          console.error(`Error making request to: ${url}, error: ${e.message}`)
+        }
+      }
+    })
+  } else {
+    console.error('EGRESS_URLS is not provided.')
+  }
+}
+
 module.exports = {
   queryDB,
+  send,
 }
